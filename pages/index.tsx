@@ -13,6 +13,7 @@ import {
 } from 'firebase/auth';
 
 import { auth } from '../lib/firebase';
+import Products from '../components/Products';
 
 const Home: NextPage = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -44,7 +45,8 @@ const Home: NextPage = () => {
         ) : (
           <button onClick={login}>Login</button>
         )}
-        {user && <p>ようこそ{user.displayName}さん</p>}
+        {user && <p>ようこそ {user.displayName}さん</p>}
+        {user && <Products user={user} />}
       </main>
       <footer className={styles.footer}>
         <a
