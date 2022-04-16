@@ -14,6 +14,7 @@ import {
 
 import { auth } from '../lib/firebase';
 import Products from '../components/Products';
+import Purchases from '../components/purchases';
 
 const Home: NextPage = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -41,25 +42,24 @@ const Home: NextPage = () => {
       </Head>
       <main>
         {user ? (
-          <button onClick={logout}>Logout</button>
+          <button
+            onClick={logout}
+            className="bg-transparent hover:to-blue-500 text-blue-800 font-semibold hover:text-white hover:bg-blue-600 p-1 my-1 border border-blue-400 hover:border-transparent rounded-xl"
+          >
+            Logout
+          </button>
         ) : (
-          <button onClick={login}>Login</button>
+          <button
+            onClick={login}
+            className="bg-transparent hover:to-blue-500 text-blue-800 font-semibold hover:text-white hover:bg-blue-600 p-1 my-1 border border-blue-400 hover:border-transparent rounded-xl"
+          >
+            Login
+          </button>
         )}
         {user && <p>ようこそ {user.displayName}さん</p>}
         {user && <Products user={user} />}
+        {user && <Purchases user={user} />}
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 };

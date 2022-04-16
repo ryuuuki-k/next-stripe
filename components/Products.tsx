@@ -83,28 +83,29 @@ const Products: NextPage<Props> = ({ user }) => {
   });
 
   return (
-    <div>
-      <div>
-        {products?.map((product) => (
-          <div key={product.id}>
-            <h2>{product.name}</h2>
-            <p>
-              {product.prices.map((price) => (
-                <div key={price.id}>
-                  <div>
-                    {price.description || '通常'} -{' '}
-                    {price.unit_amount.toLocaleString()}円
-                    <button onClick={() => redirectToCheckout(price.id)}>
-                      購入
-                    </button>
-                  </div>
+    <>
+      {products?.map((product) => (
+        <div key={product.id}>
+          <h2>{product.name}</h2>
+          <div>
+            {product.prices.map((price) => (
+              <div key={price.id}>
+                <div>
+                  {price.description || '通常'} -{' '}
+                  {price.unit_amount.toLocaleString()}円
+                  <button
+                    onClick={() => redirectToCheckout(price.id)}
+                    className=" bg-blue-500 text-white hover:bg-blue-900 font-bold m-1 p-1 rounded"
+                  >
+                    Buy
+                  </button>
                 </div>
-              ))}
-            </p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      ))}
+    </>
   );
 };
 
